@@ -2,7 +2,7 @@
 
 # 03/25/2026:
 
-Created the index.html, styles.css, and main.js files on GitHub.
+Created the index.html, styles.css, and main.js files.
 
 # 03/26/2026:
 
