@@ -5,10 +5,10 @@ async function start() {
 
     let makeOutput = `
       ${data.Results.map(function (item){
-        return `<option>${item.Make_Name}</option>`;
+        return `<option value="${item.Make_Name}">`;
       }).join('')}`;
 
-    document.getElementById("make").innerHTML = makeOutput;
+    document.getElementById("makes").innerHTML = makeOutput;
 
     /*
     document.getElementById("model").innerHTML = modelOutput;
