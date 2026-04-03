@@ -45,6 +45,7 @@ async function models() {
       }).join('')}`;
 
     document.getElementById("models").innerHTML = modelOutput;
+    document.getElementById("model").disabled = false;
     
     } catch (e) {
   console.log("Error!")
