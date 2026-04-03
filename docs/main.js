@@ -1,4 +1,4 @@
-async function start() {
+async function makes() {
   try {
     const response = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetAllMakes?format=json");
     const data = await response.json();
@@ -31,4 +31,22 @@ async function start() {
   }
 }
       
-start();
+makes();
+
+async function models() {
+  const make = document.getElementById("makes").innerHTML = makeOutput;
+  try {
+    const response = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json");
+    const data = await response.json();
+
+   let modelOutput = `
+      ${data.Results.map(function (item){
+        return `<option value="${item.Model_Name}">`;
+      }).join('')}`;
+
+    document.getElementById("models").innerHTML = modelOutput;
+    
+    } catch (e) {
+  console.log("Error!")
+  }
+}
