@@ -53,17 +53,30 @@ async function models() {
 }
 
 
-function years() {
+async function years() {
+  const make = document.getElementById("make").value;
+  const model = document.getElementById("model").value;
   const Year = new Date().getFullYear();
-  let yearOutput = "";
+  let availableYears = [];
   
   for (let y = Year; y >= 1940; y--) {
-    yearOutput += `<option value="${y}">`;
-  }
-  
-  document.getElementById("years").innerHTML = yearOutput;
-  document.getElementById("year").disabled = false;
+    try {
+      const response = await fetch(
+        `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${y}?format=json`
+      );
+      const data = await response.json();
+      const exists = data.Results.some(item =>
+        item.Model_Name.toLowerCase().includes(model.toLowerCase()));
+      if (exists) {
+        availableYears.push(`<option value="${y}">`);
+     }
 
+  } catch (e) {
+    console.log("Error!", y);
+  }
+}
+  document.getElementById("years").innerHTML = availableYears.join('');
+  document.getElementById("year").disabled = false;
 }
 
     
