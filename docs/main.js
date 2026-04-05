@@ -56,16 +56,17 @@ async function models() {
 async function years() {
   const make = document.getElementById("make").value;
   const model = document.getElementById("model").value;
+  if (!make || !model) return;
   const Year = new Date().getFullYear();
   let availableYears = [];
   
-  for (let y = Year; y >= 1940; y--) {
+  for (let y = Year; y >= Year - 70; y--) {
     try {
       const response = await fetch(
         `https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMakeYear/make/${make}/modelyear/${y}?format=json`
       );
       const data = await response.json();
-      const exists = data.Results.some(item =>
+      const exists = data.Results && data.Results.some(item =>
         item.Model_Name.toLowerCase().includes(model.toLowerCase()));
       if (exists) {
         availableYears.push(`<option value="${y}">`);
