@@ -80,7 +80,8 @@ document.getElementById("year").disabled = false;
 }
 async function trims() {
   const make = document.getElementById("make").value.toLowerCase();
-  const model = document.getElementById("model").value.toLowerCase();
+  let model = document.getElementById("model").value.toLowerCase();
+  model = model.replace(/[^a-z0-9]/g, "");
   const year = document.getElementById("year").value;
 
   if (!make || !model || !year) return;
