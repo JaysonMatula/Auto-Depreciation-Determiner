@@ -97,8 +97,7 @@ async function trims() {
     const trims = json.Trims.map(t => t.model_trim).filter(Boolean);
     document.getElementById("trims").innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
-    const trimInputs = document.querySelectorAll("#trim");
-    const currentTrim = trimInputs[trimInputs.length - 1];
+    const currentTrim = document.getElementById("trim");
     currentTrim.disabled = false;
     currentTrim.focus();
   } catch (e) {
