@@ -89,7 +89,8 @@ async function trims() {
   const trims = [...new Set((data.listings || []).map(car => car.trim).filter(Boolean))];
   document.getElementById("trims").innerHTML = 
     trims.map(t => `<option value="${t}">`).join('');
-  
+  const trimInput = document.querySelectorAll("#trim");
+  trimInput[trimInput.length - 1].disabled = false;
   } catch (e) {
     console.log("Error loading trims");
   }
