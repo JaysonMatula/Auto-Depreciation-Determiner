@@ -158,7 +158,24 @@ function addVehicle() {
     input.disabled = true;
   });
   newRow.querySelector("#make").disabled = false;
+const removeBtn = document.createElement("button");
+  removeBtn.textContent = "Remove Vehicle";
+  removeBtn.type = "button";
+  removeBtn.className = "remove-btn";
+
+  removeBtn.onclick = function () {
+    newRow.remove();
+    const wrapper = document.getElementById("form-wrapper");
+    const addBtn = document.createElement("button");
+    addBtn.textContent = "+ Add Vehicle";
+    addBtn.type = "button";
+    addBtn.className = "add-vehicle-btn";
+    addBtn.onclick = addVehicle;
+    wrapper.appendChild(addBtn);
+  };
+  newRow.appendChild(removeBtn);
   container.appendChild(newRow);
   const btn = document.querySelector(".add-vehicle-btn");
   if (btn) btn.remove();
 }
+
