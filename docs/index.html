@@ -13,6 +13,7 @@
   <div class="vehicle-row">
     <label for="make">Make:</label>
     <input list="makes" id="make" placeholder="Select make" onchange="models()">
+    <button type="button" onclick="addVehicle()" class="add-btn">+ Add Vehicle</button>
     <datalist id="makes"></datalist>
     <br><br>
 
@@ -30,9 +31,7 @@
     <input list="trims" id="trim" placeholder="Select year first" disabled>
     <datalist id="trims"></datalist>
     <br><br>
-    <button type="button" onclick="addVehicle()" class="add-btn">
-      + Add Vehicle
-    </button>
+    <button type="button" class="add-btn">Submit</button>
     
   </div>
 </div>
