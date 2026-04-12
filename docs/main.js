@@ -50,8 +50,9 @@ async function makes() {
       
 makes();
 
-async function models() {
-  const make = document.getElementById("make").value;
+async function models(el) {
+  const row = el.closest(".vehicle-row");
+  const make = el.value;
   try {
     const response = await fetch(`https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/${make}?format=json`);
     const data = await response.json();
@@ -62,7 +63,7 @@ async function models() {
       }).join('')}`;
 
     document.getElementById("models").innerHTML = modelOutput;
-    document.getElementById("model").disabled = false;
+    row.querySelector("#model").disabled = false;
     
     } catch (e) {
   console.log("Error!")
@@ -70,9 +71,10 @@ async function models() {
 }
 
 
-async function years() {
-  const make = document.getElementById("make").value;
-  const model = document.getElementById("model").value;
+async function years(el) {
+  const row = el.closest(".vehicle-row");
+  const make = row.querySelector("#make").value;
+  const model = el.value;
   if (!make || !model) return;
   const Year = new Date().getFullYear();
   const promises = [];
@@ -93,12 +95,14 @@ const results = await Promise.all(promises);
 const availableYears = results.filter(Boolean);
 
 document.getElementById("years").innerHTML = availableYears.join('');
-document.getElementById("year").disabled = false;
+row.querySelector("#year").disabled = false;
 }
-async function trims() {
-  const makeRaw = document.getElementById("make").value.toLowerCase();
-  const modelRaw = document.getElementById("model").value.toLowerCase();
-  const year = document.getElementById("year").value;
+async function trims(el) {
+  const row = el.closest(".vehicle-row");
+
+  const makeRaw = row.querySelector("#make").value.toLowerCase();
+  const modelRaw = row.querySelector("#model").value.toLowerCase();
+  const year = el.value;
 
   if (!makeRaw || !modelRaw || !year) return;
 
@@ -116,7 +120,7 @@ async function trims() {
 
     if (!match) {
       console.log("No matching CarQuery model found");
-      document.getElementById("trim").disabled = false;
+      row.querySelector("#trim").disabled = false;
       return;
     }
 
@@ -135,13 +139,13 @@ async function trims() {
     document.getElementById("trims").innerHTML =
       trims.map(t => `<option value="${t}">`).join('');
 
-    const currentTrim = document.getElementById("trim");
+    const currentTrim = row.querySelector("#trim");
     currentTrim.disabled = false;
     currentTrim.focus();
 
   } catch (e) {
     console.log("Error!", e);
-    document.getElementById("trim").disabled = false;
+    row.querySelector("#trim").disabled = false;
   }
 }
 function addVehicle() {
