@@ -146,6 +146,7 @@ async function trims() {
 }
 function addVehicle() {
   const container = document.getElementById("form-container");
+  if (container.children.length >= 2) return;
   const firstRow = container.children[0];
   const newRow = firstRow.cloneNode(true);
   newRow.querySelectorAll("input").forEach(input => {
