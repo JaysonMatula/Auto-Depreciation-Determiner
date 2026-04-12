@@ -116,6 +116,7 @@ async function trims() {
     const trimJson = JSON.parse(
       trimText.replace("var carquery = ", "").replace(/;$/, "")
     );
+    console.log(trimJson.Trims);
 
     const trims = (trimJson.Trims || [])
       .map(t => t.model_trim)
