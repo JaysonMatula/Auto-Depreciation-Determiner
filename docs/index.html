@@ -14,17 +14,17 @@
 <div id="form-container">
   <div class="vehicle-row">
     <label for="make">Make:</label>
-    <input list="makes" id="make" placeholder="Select make" onchange="models()">
+    <input list="makes" id="make" placeholder="Select make" onchange="models(this)">
     <datalist id="makes"></datalist>
     <br><br>
 
     <label for="model">Model:</label>
-    <input list="models" id="model" placeholder="Select make first" onchange="years()" disabled>
+    <input list="models" id="model" placeholder="Select make first" onchange="years(this)" disabled>
     <datalist id="models"></datalist>
     <br><br>
 
     <label for="year">Year:</label>
-    <input list="years" id="year" placeholder="Select model first" onchange="trims()" disabled>
+    <input list="years" id="year" placeholder="Select model first" onchange="trims(this)" disabled>
     <datalist id="years"></datalist>
     <br><br>
 
